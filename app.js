@@ -61,9 +61,17 @@ server.get('/home', function (request, response) {
 // request:request请求头,请求体
 server.post('/login', function (request, response) {
   //解析post请求参数
-  console.log('请求成功');
-  console.log(request.body);
-  response.send(request.body);
+  if (request.body.name === 'lin') {
+    response.send({
+      code: 200,
+      data: request.body,
+    });
+  } else {
+    response.send({
+      code: 20000,
+      message: '登录账号不存在',
+    });
+  }
 });
 
 //7. 绑定端口
